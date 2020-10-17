@@ -1,5 +1,5 @@
 # shoestrap
-Bootstrap examples formatted for Django templates
+Bootstrap examples (https://getbootstrap.com/docs/4.4/examples/) formatted for Django templates (https://docs.djangoproject.com/en/3.1/ref/templates/)
 
 To view snippets go to templates/snippets and to view pages go to templates/pages
 
