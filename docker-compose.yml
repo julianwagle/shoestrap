@@ -9,39 +9,23 @@ services:
   db:
     image: kartoza/postgis:12.0
     volumes:
-    # To persist the data beyond the life of the container we configured a volume. 
+    #To persist the data beyond the life of the container we configured a volume. 
     # This config will bind postgis-data to the "/var/lib/postgresql" 
       - postgis-data:/var/lib/postgresql
       - dbbackups:/backups
     environment:
       # If you need to create multiple database you can add coma separated databases eg gis,data
-      - POSTGIS_DB=${POSTGIS_DB}
-      - POSTGIS_USER=${POSTGIS_USER}
-      - POSTGIS_PASS=${POSTGIS_PASS}
+      - POSTGRES_DB=shoestrap
+      - POSTGRES_USER=shoestrap
+      - POSTGRES_PASS=shoestrap
       # Add extensions you need to be enabled by default in the DB. Default are the five specified below
-      - POSTGIS_MULTIPLE_EXTENSIONS=${POSTGIS_MULTIPLE_EXTENSIONS}
+      - POSTGRES_MULTIPLE_EXTENSIONS=postgis,hstore,postgis_topology,postgis_raster,pgrouting
     ports:
-      - 5432:5432
+      - 25432:5432
     restart: on-failure
     healthcheck:
       test: "exit 0"
 
-  dbbackups:
-    image: kartoza/pg-backup:12.0
-    hostname: pg-backups
-    volumes:
-      - dbbackups:/backups
-    environment:
-      - DUMPPREFIX=${DUMPPREFIX}
-      - POSTGIS_USER=${POSTGIS_USER}
-      - POSTGIS_PASS=${POSTGIS_PASS}
-      - POSTGIS_PORT=${POSTGIS_PORT}
-      - POSTGIS_HOST=${POSTGIS_HOST}
-      - POSTGIS_DBNAME=${POSTGIS_DB}
-      # - PG_ENV=/pgenv.sh # test from terminal output. may cause problem.
-    restart: on-failure
-    depends_on:
-      - "db"
 
   web:
     build: .

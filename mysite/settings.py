@@ -7,8 +7,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env()
 env.read_env('.env')
 
-DEBUG = env.bool("DEBUG")
-SECRET_KEY = env("SECRET_KEY")
+DEBUG = True
+SECRET_KEY = 'n8TrvlqXQ0Gp74x8XRyyXz00RYViEB9mdehvV9zMXI7IPtzuCmw0ZVuvgLQmH1Gb'
 ALLOWED_HOSTS = ["*"]
 
 SITE_ID = 1
@@ -56,14 +56,16 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 
-DATABASES = {'default': {
-        'ENGINE': env("POSTGIS_ENGINE"),
-        'NAME': env("POSTGIS_DB"),
-        'USER': env("POSTGIS_USER"),
-        'PASSWORD': env("POSTGIS_PASS"),
-        'HOST': env("POSTGIS_HOST"),
-        'PORT': : env("POSTGIS_PORT"),
-        }}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'shoestrap',
+        'USER': 'shoestrap',
+        'PASSWORD': 'shoestrap',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
@@ -78,6 +80,10 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL = : env("STATIC_URL")
-STATIC_ROOT = : env("STATIC_ROOT")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "shoestrap/static"),
+    os.path.join(BASE_DIR, "shoestrap/static/shoestrap"),
+]
