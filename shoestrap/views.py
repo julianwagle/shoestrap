@@ -3,7 +3,28 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, authenticate, logout
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the shoestrap index.")
+    return HttpResponse("""Hello, world. You're at the shoestrap index. 
+						Enter any of the following URLs to view different looks in action.
+						album,
+						blog,
+						carousel,
+						checkout,
+						cover,
+						dashboard,
+						floating_labels,
+						grid,
+						jumbotron,
+						navbar_bottom,
+						navbar_fixed,
+						navbar_static,
+						navbars,
+						offcanvas,
+						pricing,
+						product,
+						sign_in,
+						starter_template,
+						sticky_footer_navbar,
+						sticky_footer,""")
 
 #shoestrap VIEWS 
 
