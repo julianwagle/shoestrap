@@ -1,0 +1,226 @@
+{% extends "base.html" %}{% load static %}{% load static i18n %}{% block content %} 
+
+
+<style type="text/css">
+    /* GLOBAL STYLES
+    -------------------------------------------------- */
+    /* Padding below the footer and lighter body text */
+    
+    body {
+      /* padding-top: 3rem; */
+      padding-bottom: 3rem;
+      /* color: #5a5a5a; */
+    }
+    
+
+    
+    /* MARKETING CONTENT
+    -------------------------------------------------- */
+    
+    /* Center align the text within the three columns below the carousel */
+    .marketing .col-lg-4 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: 400;
+    }
+    .marketing .col-lg-4 p {
+      margin-right: .75rem;
+      margin-left: .75rem;
+    }
+    
+    
+    /* Featurettes
+    ------------------------- */
+    
+    .featurette-divider {
+      margin: 5rem 0; /* Space out the  <hr> more */
+    }
+    
+    /* Thin out the marketing headings */
+    .featurette-heading {
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.05rem;
+    }
+    
+    
+    /* RESPONSIVE CSS
+    -------------------------------------------------- */
+  
+    
+      .featurette-heading {
+        font-size: 50px;
+      }
+
+    
+    @media (min-width: 62em) {
+      .featurette-heading {
+        margin-top: 7rem;
+      }
+    }
+      
+
+
+.form-useful-information {
+  width: 100%;
+  max-width: 720px;
+  padding: 15px;
+  margin: auto;
+  /* text-align:left; */
+
+}
+.form-useful-information .checkbox {
+  font-weight: 400;
+}
+
+
+
+.form-useful-information .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-useful-information .form-control:focus {
+  z-index: 2;
+}
+
+</style>
+
+
+<main role="main">
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron ">
+
+{% include 'snippets/header.html' %}    
+
+
+    <div class="container ">
+      <label class="light-switch light-switch-label light-switch-pill light-switch-opposite-dark" >
+        <input type="checkbox" class="light-switch-input" id="light_switch" checked>
+        <span class="light-switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+      </label>
+    </div>
+    <div class="container ">
+      <h1 class="display-3">Hello, world!</h1>
+      <p class="lead"> This is a template for a simple marketing or informational website. 
+        It includes a large callout called a jumbotron and supporting pieces of content. 
+        Use it as a starting point to create something more unique.</p>
+
+      <p>
+        <a href="#" class="btn btn-outline-primary my-2">Main call to action</a>
+        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+      </p>
+    </div>
+  </div>
+  
+    <hr class="featurette-divider">
+  
+  
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1>A large and appealing request for info</h1>
+        <p class="lead">Please, enter some useful information here for us and we'll give you a mango in return.</p>
+        <form class="form-useful-information" id="useful_information_form" method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+
+          <div id="useful_information" class="form-group"> 
+              <label for="useful_information" class="sr-only requiredField"> Useful Information </label> 
+              <div class=""> 
+                <input type="text" name="useful_information" placeholder="Useful Information" class="textinput textInput form-control" required autofocus id="useful_information"> 
+              </div> 
+          </div>
+          <div class="text-center">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Recieve your mango</button>
+          </div>
+      </form>
+    </div>
+
+    </section>
+
+    <!-- <hr class="featurette-divider">   -->
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+  
+    <div class="container marketing">
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-4">
+          <img  src="{% static 'images/django.svg' %}" width="140" height="140" background="#777" color="#777" class="rounded-circle">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img  src="{% static 'images/django.svg' %}" width="140" height="140" background="#777" color="#777" class="rounded-circle">
+          <h2>Heading</h2>
+          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img  src="{% static 'images/django.svg' %}" width="140" height="140" background="#777" color="#777" class="rounded-circle">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+  
+  
+      <!-- START THE FEATURETTES -->
+  
+      <hr class="featurette-divider">  
+     
+      <div class="row featurette ">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+          <img  src="{% static 'images/django.svg' %}" width="500" height="500" background="#eee" color="#aaa" class="bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <img  src="{% static 'images/django.svg' %}" width="500" height="500" background="#eee" color="#aaa" class="bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+          <img  src="{% static 'images/django.svg' %}" width="500" height="500" background="#eee" color="#aaa" class="bd-placeholder-img-lg featurette-image img-fluid mx-auto">
+        </div>
+      </div>
+  
+      <hr class="featurette-divider">
+  
+      <!-- /END THE FEATURETTES -->
+  
+    </div><!-- /.container -->
+  
+  
+    <!-- FOOTER -->
+    <footer class="container">
+      <p class="float-right"><a href="#">Back to top</a></p>
+      <p>&copy; 2017-Now <span class="org_name"></span> &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+  </main>
+  {% endblock content %}

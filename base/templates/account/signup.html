@@ -1,0 +1,222 @@
+{% extends "account/base.html" %}
+{% load static %} 
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+{% trans "Signup" %}
+{% endblock %}
+
+{% block inner %}
+
+<style type="text/css">
+  html,
+body {
+  height: 100%;
+}
+
+body {
+
+  /* padding-top: 40px; */
+  padding-bottom: 40px;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 420px;
+  padding: 15px;
+  margin: auto;
+  text-align:left;
+
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group > input,
+.form-label-group > label {
+  height: 3.125rem;
+  padding: .75rem;
+}
+
+.form-label-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0; /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #343a40;
+  pointer-events: none;
+  cursor: text; /* Match the input under the label */
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::-moz-placeholder {
+  color: transparent;
+}
+
+.form-label-group input::placeholder {
+  color: transparent;
+} 
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: 1.25rem;
+  padding-bottom: .25rem;
+}
+
+.form-label-group input:not(:placeholder-shown) ~ label {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  font-size: 12px;
+  color: #343a40;
+}
+
+/* Fallback for Edge
+-------------------------------------------------- */
+@supports (-ms-ime-align: auto) {
+  .form-label-group > label {
+    display: none;
+  }
+  .form-label-group input::-ms-input-placeholder {
+    color: #343a40;
+  }
+}
+
+/* Fallback for IE
+-------------------------------------------------- */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .form-label-group > label {
+    display: none;
+  }
+  .form-label-group input:-ms-input-placeholder {
+    color: #343a40;
+  }
+}
+
+</style>
+
+<div class=" container d-flex  nav-scroller ">
+  <label class="light-switch light-switch-label light-switch-pill light-switch-opposite-dark">
+    <input type="checkbox" class="light-switch-input" id="light_switch" checked>
+    <span class="light-switch-slider" data-checked="&#x2713;" data-unchecked="&#x2715;"></span>
+  </label>
+</div>
+
+<form class="form-signin signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+
+  <div class="text-center mb-4">
+    <img class="mb-4" src="{% static 'images/django.svg' %}" alt="" width="72" height="72">
+    <!-- <h1 class="h3 mb-3 font-weight-normal"><span class="org_name"></span></h1> -->
+    <h1 class="h3 mb-3 font-weight-normal">Sign up below</h1>
+    <p>
+      {% blocktrans %}
+        Do you already have an account with 
+        <span class="org_name"></span>? 
+        Then please <a href="{{ login_url }}">sign in</a>.
+      {% endblocktrans %}    
+    </p>
+  </div>
+
+
+ 
+  <div id="div_id_email" class="form-group"> 
+  <!-- <div id="div_id_email"class="form-label-group"> -->
+    <label for="id_email" class="sr-only requiredField"> E-mail </label> 
+    <div class=""> 
+      <input type="email" name="email" placeholder="E-mail address" autocomplete="email" class="textinput textInput form-control" required autofocus id="id_email"> 
+    </div> 
+  </div>
+
+  <div id="div_id_username" class="form-group">
+  <!-- <div id="div_id_username"class="form-label-group"> -->
+    <label for="id_username" class="sr-only requiredField"> Username </label> 
+    <div class=""> 
+      <input type="text" name="username" placeholder="Username" autocomplete="username" minlength="1" maxlength="150" class="textinput textInput form-control" required id="id_username"> 
+    </div> 
+  </div> 
+
+  <div id="div_id_password1" class="form-group"> 
+  <!-- <div id="div_id_password1"class="form-label-group"> -->
+    <label for="id_password1" class="sr-only requiredField"> Password </label> 
+    <div class=""> 
+      <input type="password" name="password1" placeholder="Password" autocomplete="new-password" class="textinput textInput form-control" required id="id_password1"> 
+    </div> 
+  </div> 
+
+  <div id="div_id_password2" class="form-group">
+  <!-- <div id="div_id_password2"class="form-label-group"> -->
+    <label for="id_password2" class="sr-only requiredField"> Password (again) </label> 
+    <div class=""> 
+      <input type="password" name="password2" placeholder="Password (again)" class="textinput textInput form-control" required id="id_password2"> 
+    </div>
+  </div>
+
+  {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+
+  <div class="checkbox mb-3">
+    <label><input type="checkbox" value="remember-me"> Remember me</label>
+  </div>
+
+  <!-- <button class="btn btn-primary" type="submit">{% trans "Sign Up" %}</button> -->
+  <button class="btn btn-lg btn-outline-primary btn-block" type="submit">Sign Up</button>
+
+  </br>
+  <div class="text-center mb-4">
+
+    <p>
+      Click "Sign up" to agree to <span class="org_name"></span>'s  
+      <a href="#"> Terms and Conditions of Use</a> 
+      and acknowledge that <span class="org_name"></span>'s 
+      <a href="#"> Pivacy Policy </a> applies to you.
+    </p>
+
+  </div>
+
+</form>
+
+{% endblock %}
+
