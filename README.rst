@@ -18,7 +18,10 @@ Basic Commands
 
 Getting Started
 ^^^^^^^^^^^^^^^
-* Just run 'docker-compose -f local.yml up' in root and you should be good to go. 
+* Just run::
+    $ docker-compose -f local.yml up
+ 
+ in root and you should be good to go. 
 
 
 Setting Up Your Users
